@@ -21,6 +21,12 @@ def create_app(config_class=Config):
     voice_routes.register_routes(app)
     admin_routes.register_routes(app)
 
+    # ADD THIS BLOCK ↓↓↓
+    @app.route("/", methods=["GET"])
+    def health_check():
+        return jsonify({"status": "ok", "message": "Backend is running"}), 200
+    # ↑↑↑
+
     @app.errorhandler(500)
     def internal_error(e):
         return jsonify({'error': 'internal_server_error'}), 500
