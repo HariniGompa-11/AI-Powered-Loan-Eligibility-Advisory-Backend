@@ -24,7 +24,7 @@ def create_app(config_class=Config):
     # ADD THIS BLOCK ↓↓↓
     @app.route("/", methods=["GET"])
     def health_check():
-        return jsonify({"status": "ok", "message": "Backend is running"}), 200
+        return jsonify({FRONTEND_URL}), 200
     # ↑↑↑
 
     @app.errorhandler(500)
@@ -32,3 +32,4 @@ def create_app(config_class=Config):
         return jsonify({'error': 'internal_server_error'}), 500
 
     return app
+
